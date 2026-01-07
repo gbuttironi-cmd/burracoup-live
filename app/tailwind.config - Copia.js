@@ -15,22 +15,28 @@ export default {
     themes: [
       {
         burracoup: {
-          // Brand
-          "primary": "#6D28D9",          // viola BurracoUP
-          "primary-content": "#FFFFFF",  // testo sopra primary (bianco)
+          "primary": "#6D28D9",          // viola
+          "primary-content": "#FFFFFF",  // testo sopra il primary -> bianco
+          "secondary": "#0EA5E9",
+          "secondary-content": "#FFFFFF",
+          "accent": "#22C55E",
+          "accent-content": "#052E16",
 
-          // Base UI (chiaro, leggibile)
+          "neutral": "#111827",
+          "neutral-content": "#F9FAFB",
+
           "base-100": "#FFFFFF",
           "base-200": "#F3F4F6",
           "base-300": "#E5E7EB",
           "base-content": "#111827",
 
-          // Stato (minimo indispensabile)
-          "success": "#16A34A",
-          "success-content": "#FFFFFF",
+          "info": "#0EA5E9",
+          "info-content": "#FFFFFF",
+          "success": "#22C55E",
+          "success-content": "#052E16",
           "warning": "#F59E0B",
           "warning-content": "#111827",
-          "error": "#DC2626",
+          "error": "#EF4444",
           "error-content": "#FFFFFF",
         },
       },
