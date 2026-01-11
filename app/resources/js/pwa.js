@@ -1,13 +1,15 @@
 let deferredPrompt = null;
 
 export function initPWAInstall() {
-  // Register SW
-  if ("serviceWorker" in navigator) {
+  // Register SW SOLO in produzione.
+  // In DEV: mai, per evitare cache e problemi con Vite/build.
+  const isProd = import.meta.env.PROD;
+
+  if (isProd && "serviceWorker" in navigator) {
     window.addEventListener("load", async () => {
       try {
         await navigator.serviceWorker.register("/sw.js");
       } catch (e) {
-        // non bloccare l'app se fallisce
         console.warn("SW registration failed", e);
       }
     });

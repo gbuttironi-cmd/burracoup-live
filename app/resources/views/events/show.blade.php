@@ -4,7 +4,7 @@
 @php
   $view = request('view', 'tables'); // tables|alpha
 
-  $btnActive = 'btn btn-primary';
+  $btnActive = 'btn btn-primary btn-active';
   $btnIdle   = 'btn btn-outline';
 @endphp
 
@@ -33,16 +33,16 @@
         </div>
       </div>
 
-      {{-- Toggle principale: Tavoli / Classifica (btn) + selezione turno --}}
+      {{-- Toggle principale: Tavoli / Classifica + selezione turno --}}
       <div class="mt-4 flex flex-col lg:flex-row lg:items-end gap-3">
         <div class="flex flex-wrap gap-2">
           <a class="{{ $tab === 'tables' ? $btnActive : $btnIdle }}"
-             href="{{ route('events.show', $event->id) }}?tab=tables{{ $activeRoundId ? '&round_id='.$activeRoundId : '' }}&view={{ $view }}">
+             href="{{ route('events.show', $event->id) }}?tab=tables&round_id={{ $activeRoundId }}&view={{ $view }}">
             Tavoli
           </a>
 
           <a class="{{ $tab === 'standings' ? $btnActive : $btnIdle }}"
-             href="{{ route('events.show', $event->id) }}?tab=standings{{ $activeRoundId ? '&round_id='.$activeRoundId : '' }}">
+             href="{{ route('events.show', $event->id) }}?tab=standings&round_id={{ $activeRoundId }}">
             Classifica
           </a>
         </div>
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      {{-- Toggle secondario: Per tavolo / Alfabetico (solo tab=tables) --}}
+      {{-- Toggle secondario: Per tavolo / Alfabetico --}}
       @if($tab === 'tables')
         <div class="mt-4 flex flex-wrap gap-2">
           <a class="{{ $view === 'tables' ? $btnActive : $btnIdle }}"
@@ -109,16 +109,15 @@
                     <th>Mobile</th>
                   </tr>
                 </thead>
-				<tbody>
-				  @foreach($tables as $t)
-					<tr style="background-color: {{ $loop->odd ? 'rgba(124,58,237,0.06)' : 'transparent' }};">
-					  <td class="font-bold">{{ $t->table_no }}</td>
-					  <td>{{ $t->fixed_pair_name ?? '-' }}</td>
-					  <td>{{ $t->mobile_pair_name ?? '-' }}</td>
-					</tr>
-				  @endforeach
-				</tbody>
-
+                <tbody>
+                  @foreach($tables as $t)
+                    <tr>
+                      <td class="font-bold">{{ $t->table_no }}</td>
+                      <td>{{ $t->fixed_pair_name ?? '-' }}</td>
+                      <td>{{ $t->mobile_pair_name ?? '-' }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
               </table>
             </div>
 
@@ -133,16 +132,15 @@
                     <th class="w-24">Tavolo</th>
                   </tr>
                 </thead>
-				<tbody>
-				  @foreach($alphaRows as $r)
-					<tr style="background-color: {{ $loop->odd ? 'rgba(124,58,237,0.06)' : 'transparent' }};">
-					  <td class="font-semibold">{{ $r->pair_name }}</td>
-					  <td><span class="badge badge-primary text-primary-content">{{ $r->label }}</span></td>
-					  <td class="font-bold">{{ $r->table_no }}</td>
-					</tr>
-				  @endforeach
-				</tbody>
-
+                <tbody>
+                  @foreach($alphaRows as $r)
+                    <tr>
+                      <td class="font-semibold">{{ $r->pair_name }}</td>
+                      <td><span class="badge badge-primary">{{ $r->label }}</span></td>
+                      <td class="font-bold">{{ $r->table_no }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
               </table>
             </div>
           @endif
@@ -170,16 +168,15 @@
                   <th class="w-28">Punti</th>
                 </tr>
               </thead>
-			<tbody>
-			  @foreach($standings as $s)
-				<tr style="background-color: {{ $loop->odd ? 'rgba(124,58,237,0.06)' : 'transparent' }};">
-				  <td class="font-bold">{{ $s->rank ?? '-' }}</td>
-				  <td class="font-semibold">{{ $s->competitor_name }}</td>
-				  <td class="font-bold">{{ $s->points ?? '-' }}</td>
-				</tr>
-			  @endforeach
-			</tbody>
-
+              <tbody>
+                @foreach($standings as $s)
+                  <tr>
+                    <td class="font-bold">{{ $s->rank ?? '-' }}</td>
+                    <td class="font-semibold">{{ $s->competitor_name }}</td>
+                    <td class="font-bold">{{ $s->points ?? '-' }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
             </table>
           </div>
         @endif

@@ -6,18 +6,21 @@
 
     <title>{{ $title ?? 'BurracoUP LIVE' }}</title>
 
-    {{-- PWA --}}
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="theme-color" content="#0f172a">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+{{-- PWA --}}
+	@if (config('app.pwa_enabled', false))
+		<link rel="manifest" href="/manifest.webmanifest">
+		<meta name="theme-color" content="#0f172a">
+		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	@endif
+
 
     {{-- Assets --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-200">
+<body class="min-h-screen bg-base-200">
 
 
     {{-- Navbar --}}
@@ -45,13 +48,15 @@
 
     {{-- Bottom navigation (mobile) --}}
     <div class="btm-nav sm:hidden bg-base-100 border-t border-base-300">
-        <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">
+		<a href="/" class="{{ request()->is('/') ? 'active text-primary font-semibold' : '' }}">
+
             <span class="btm-nav-label">Home</span>
         </a>
-        <a href="/eventi" class="{{ request()->is('eventi*') ? 'active' : '' }}">
+		<a href="/eventi" class="{{ request()->is('eventi*') ? 'active text-primary font-semibold' : '' }}">
             <span class="btm-nav-label">Eventi</span>
         </a>
-        <a href="/giocatori" class="{{ request()->is('giocatori*') ? 'active' : '' }}">
+		<a href="/giocatori" class="{{ request()->is('giocatori*') ? 'active text-primary font-semibold' : '' }}">
+
             <span class="btm-nav-label">Giocatori</span>
         </a>
     </div>

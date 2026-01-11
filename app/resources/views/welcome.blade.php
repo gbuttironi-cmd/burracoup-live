@@ -14,7 +14,7 @@
           </div>
 
           <div class="flex gap-2">
-            <a href="/eventi" class="btn btn-primary">Cerca eventi</a>
+            <a href="/eventi" class="btn btn-primary text-white">Cerca eventi</a>
             <a href="/giocatori" class="btn btn-outline">Trova giocatore</a>
           </div>
         </div>

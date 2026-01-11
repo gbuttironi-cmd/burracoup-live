@@ -1,3 +1,5 @@
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -5,27 +7,18 @@ export default {
     "./resources/**/*.js",
     "./resources/**/*.vue",
   ],
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    require("daisyui"),
-  ],
+  theme: { extend: {} },
+  plugins: [daisyui],
   daisyui: {
     themes: [
       {
         burracoup: {
-          // Brand
-          "primary": "#6D28D9",          // viola BurracoUP
-          "primary-content": "#FFFFFF",  // testo sopra primary (bianco)
-
-          // Base UI (chiaro, leggibile)
+          "primary": "#6D28D9",
+          "primary-content": "#FFFFFF",
           "base-100": "#FFFFFF",
           "base-200": "#F3F4F6",
           "base-300": "#E5E7EB",
           "base-content": "#111827",
-
-          // Stato (minimo indispensabile)
           "success": "#16A34A",
           "success-content": "#FFFFFF",
           "warning": "#F59E0B",
