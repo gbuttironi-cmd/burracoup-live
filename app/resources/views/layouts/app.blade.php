@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it" data-theme="burracoup">
+<html data-theme="cmyk">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,6 +30,7 @@
 		  BurracoUP <span class="opacity-70">LIVE</span>
 		</a>
 	  </div>
+	  
 
 	  <div class="flex-none gap-2">
 		<button id="pwa-install-btn" class="btn btn-secondary hidden">

@@ -1,0 +1,7 @@
+Stile Base 	Nomi dei Temi
+Classici	light, dark, cupcake, bumblebee, emerald, corporate
+Vivaci/Retro	synthwave, retro, cyberpunk, valentine, halloween
+Natura	garden, forest, aqua, nord, sunset
+Minimal/Pro	lofi, pastel, fantasy, wireframe, black, luxury, business
+Dark/Mood	dracula, night, coffee, dim, abyss
+Altre Varianti	cmyk, autumn, acid, lemonade, winter, caramellatte, silk

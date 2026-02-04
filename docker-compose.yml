@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   nginx:
     image: nginx:1.27-alpine
@@ -18,6 +16,8 @@ services:
       context: .
       dockerfile: ./docker/php/Dockerfile
     working_dir: /var/www/html
+    environment:
+      ADMIN_KEY: "adm_9P1kYx7D2vQmL4nR8sT3uW6zA0bC5dE1fG9hJ"
     volumes:
       - ./app:/var/www/html
     depends_on:

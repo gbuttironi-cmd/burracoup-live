@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
             AssociationSeeder::class,
             EventSeeder::class,
             EventRoundSeeder::class,
+            EventTablesSeeder::class,
+            // EventStandingsSeeder::class, (se c'è)
         ]);
     }
 }

@@ -9,25 +9,25 @@ class EventRoundSeeder extends Seeder
 {
     public function run(): void
     {
-        $eventId = DB::table('events')->value('id');
+        $eventIds = DB::table('public.events')->pluck('id');
 
-        DB::table('event_rounds')->insert([
-            [
-                'event_id' => $eventId,
-                'round_no' => 1,
-                'name' => 'Turno 1',
-                'status' => 'published',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'event_id' => $eventId,
-                'round_no' => 2,
-                'name' => 'Turno 2',
-                'status' => 'draft',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-        ]);
+        foreach ($eventIds as $eventId) {
+            $rounds = [
+                ['event_id' => $eventId, 'round_no' => 1, 'name' => 'Turno 1', 'status' => 'published'],
+                ['event_id' => $eventId, 'round_no' => 2, 'name' => 'Turno 2', 'status' => 'draft'],
+            ];
+
+            foreach ($rounds as $r) {
+                DB::table('public.event_rounds')->updateOrInsert(
+                    ['event_id' => $r['event_id'], 'round_no' => $r['round_no']], // match col vincolo unico
+                    [
+                        'name' => $r['name'],
+                        'status' => $r['status'],
+                        'updated_at' => now(),
+                        'created_at' => now(),
+                    ]
+                );
+            }
+        }
     }
 }

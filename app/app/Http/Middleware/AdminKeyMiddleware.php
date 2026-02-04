@@ -12,13 +12,18 @@ class AdminKeyMiddleware
     {
         $expected = (string) config('app.admin_key', env('ADMIN_KEY', ''));
 
-        // Se non configurata, blocca tutto (fail-closed)
         if ($expected === '') {
             abort(403, 'Admin key not configured.');
         }
 
-        // Accetta key da query (?key=) oppure header X-Admin-Key
-        $provided = (string) $request->query('key', $request->header('X-Admin-Key', ''));
+        // accetta key oppure admin_key, oppure header
+        $provided = (string) (
+            $request->query('key')
+            ?: $request->query('admin_key')
+            ?: $request->header('X-Admin-Key')
+            ?: $request->header('X-ADMIN-KEY')
+            ?: ''
+        );
 
         if (!hash_equals($expected, $provided)) {
             abort(403, 'Forbidden.');

@@ -1,31 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Zebra tables – contrasto leggero ma visibile */
-.table-zebra-force tbody tr:nth-child(odd) {
-  background-color: color-mix(in oklab, var(--color-primary) 6%, transparent);
-}
-.table-zebra-force tbody tr:nth-child(even) {
-  background-color: transparent;
-}
-.table-zebra-force tbody tr:hover {
-  background-color: color-mix(in oklab, var(--color-primary) 12%, transparent);
-}
-
-/* Evita override “legacy” e lascia che DaisyUI gestisca i componenti.
-   Se un bottone è un <a>, assicurati solo che non venga forzato da regole globali. */
-
-
-/* Badge primary coerente con tema (DaisyUI v5 usa --color-*) */
-.badge.badge-primary {
-  color: var(--color-primary-content);
-}
-/* Assicura che i bottoni siano bottoni, anche se sono <a> */
-.btn {
-  color: var(--btn-fg);
-}
-/* I bottoni possono essere <a>: mantieni il colore DaisyUI del bottone */
-a.btn {
-  color: var(--btn-fg);
-}
+@import "tailwindcss";
+@source "../views/**/*.blade.php";
+@plugin "daisyui" { themes: all; }
